@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>編輯頁面</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<a href="#" id="back-btn">返回</a>
+		<h1>任務清單精靈</h1>
+	</header>
+	<main>
+		<form>
+			<label for="note-title">標題:</label>
+			<input type="text" id="note-title" name="note-title">
+			<label for="note-content">筆記內容:</label>
+			<textarea id="note-content" name="note-content"></textarea>
+			<button type="submit">儲存</button>
+		</form>
+	</main>
+	<script src="script.js"></script>
+</body>
+</html>
+<style>
+	body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+#back-btn {
+	color: #fff;
+	text-decoration: none;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+main {
+	margin: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #1e86dc;
+	border-radius: 5px;
+	resize: none;
+	margin-bottom: 20px;
+}
+
+button[type="submit"] {
+	background-color: #274df6;
+	color: #fff;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+</style>
+
+<script>
+export default {
+	
+}
+const backBtn = document.getElementById('back-btn');
+backBtn.addEventListener('click', goBack);
+
+function goBack() {
+	window.history.back();
+}
+
+const form = document.querySelector('form');
+form.addEventListener('submit', saveNote);
+
+function saveNote(event) {
+	event.preventDefault();
+	const title = document.getElementById('note-title').value;
+	const content = document.getElementById('note-content').value;
+	localStorage.setItem(title, content);
+	alert('Note saved!');
+	form.reset();
+}
+
+</script>
